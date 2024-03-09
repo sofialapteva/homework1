@@ -22,7 +22,7 @@ defmodule Homework1 do
   @spec calculate(String.t()) :: number()
   def calculate(expression) when is_binary(expression) do
     expression
-    |> validate
+    |> validate()
     |> String.replace(" ", "")
     |> Float.parse()
     |> compute()
@@ -30,8 +30,8 @@ defmodule Homework1 do
 
   @spec validate(String.t()) :: String.t()
   defp validate(expression) do
-    has_add_or_subtract = String.split(expression, ~r/\+|\-/, parts: 2) |> length > 1
-    has_multiply_or_divide = String.split(expression, ~r/\*|\//, parts: 2) |> length > 1
+    has_add_or_subtract = String.contains?(expression, ["+", "-"])
+    has_multiply_or_divide = String.contains?(expression, ["*", "/"])
 
     if has_add_or_subtract and has_multiply_or_divide do
       warning =

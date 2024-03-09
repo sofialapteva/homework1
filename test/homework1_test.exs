@@ -37,7 +37,8 @@ defmodule Homework1Test do
     assert Homework1.calculate("1/5+1") === 1.2
     assert Homework1.calculate("2+2*2") === 8.0
 
-    assert capture_io(fn -> Homework1.calculate("1/5+1") end) == warning
     assert capture_io(fn -> Homework1.calculate("2+2*2") end) == warning
+    # The warning would still appear in case the computations are correct
+    assert capture_io(fn -> Homework1.calculate("1/5+1") end) == warning
   end
 end
